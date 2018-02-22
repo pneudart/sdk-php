@@ -37,11 +37,6 @@ class CreditCardMaskedType
     private $cardArt = null;
 
     /**
-     * @property string $issuerNumber
-     */
-    private $issuerNumber = null;
-
-    /**
      * Gets as cardNumber
      *
      * @return string
@@ -148,28 +143,6 @@ class CreditCardMaskedType
     public function setCardArt(\net\authorize\api\contract\v1\CardArtType $cardArt)
     {
         $this->cardArt = $cardArt;
-        return $this;
-    }
-
-    /**
-     * Gets as issuerNumber
-     *
-     * @return string
-     */
-    public function getIssuerNumber()
-    {
-        return $this->issuerNumber;
-    }
-
-    /**
-     * Sets a new issuerNumber
-     *
-     * @param string $issuerNumber
-     * @return self
-     */
-    public function setIssuerNumber($issuerNumber)
-    {
-        $this->issuerNumber = $issuerNumber;
         return $this;
     }
 
