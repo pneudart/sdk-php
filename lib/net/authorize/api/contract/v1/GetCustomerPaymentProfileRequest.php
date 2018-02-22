@@ -116,6 +116,28 @@ class GetCustomerPaymentProfileRequest extends ANetApiRequestType
         return $this;
     }
 
+    /**
+     * Gets as includeIssuerInfo
+     *
+     * @return boolean
+     */
+    public function getIncludeIssuerInfo()
+    {
+        return $this->includeIssuerInfo;
+    }
+
+    /**
+     * Sets a new includeIssuerInfo
+     *
+     * @param boolean $includeIssuerInfo
+     * @return self
+     */
+    public function setIncludeIssuerInfo($includeIssuerInfo)
+    {
+        $this->includeIssuerInfo = $includeIssuerInfo;
+        return $this;
+    }
+
 
 }
 
