@@ -8,7 +8,7 @@ namespace net\authorize\api\contract\v1;
  * 
  * XSD Type: webCheckOutDataType
  */
-class WebCheckOutDataType
+class WebCheckOutDataType implements \JsonSerializable
 {
 
     /**
@@ -22,9 +22,14 @@ class WebCheckOutDataType
     private $id = null;
 
     /**
-     * @property \net\authorize\api\contract\v1\WebCheckOutDataType\TokenAType $token
+     * @property \net\authorize\api\contract\v1\WebCheckOutDataTypeTokenType $token
      */
     private $token = null;
+
+    /**
+     * @property \net\authorize\api\contract\v1\BankAccountType $bankToken
+     */
+    private $bankToken = null;
 
     /**
      * Gets as type
@@ -73,7 +78,7 @@ class WebCheckOutDataType
     /**
      * Gets as token
      *
-     * @return \net\authorize\api\contract\v1\WebCheckOutDataType\TokenAType
+     * @return \net\authorize\api\contract\v1\WebCheckOutDataTypeTokenType
      */
     public function getToken()
     {
@@ -83,15 +88,115 @@ class WebCheckOutDataType
     /**
      * Sets a new token
      *
-     * @param \net\authorize\api\contract\v1\WebCheckOutDataType\TokenAType $token
+     * @param \net\authorize\api\contract\v1\WebCheckOutDataTypeTokenType $token
      * @return self
      */
-    public function setToken(\net\authorize\api\contract\v1\WebCheckOutDataType\TokenAType $token)
+    public function setToken(\net\authorize\api\contract\v1\WebCheckOutDataTypeTokenType $token)
     {
         $this->token = $token;
         return $this;
     }
 
+    /**
+     * Gets as bankToken
+     *
+     * @return \net\authorize\api\contract\v1\BankAccountType
+     */
+    public function getBankToken()
+    {
+        return $this->bankToken;
+    }
 
+    /**
+     * Sets a new bankToken
+     *
+     * @param \net\authorize\api\contract\v1\BankAccountType $bankToken
+     * @return self
+     */
+    public function setBankToken(\net\authorize\api\contract\v1\BankAccountType $bankToken)
+    {
+        $this->bankToken = $bankToken;
+        return $this;
+    }
+
+
+    // Json Serialize Code
+    public function jsonSerialize(){
+        $values = array_filter((array)get_object_vars($this),
+        function ($val){
+            return !is_null($val);
+        });
+        $mapper = \net\authorize\util\Mapper::Instance();
+        foreach($values as $key => $value){
+            $classDetails = $mapper->getClass(get_class() , $key);
+            if (isset($value)){
+                if ($classDetails->className === 'Date'){
+                    $dateTime = $value->format('Y-m-d');
+                    $values[$key] = $dateTime;
+                }
+                else if ($classDetails->className === 'DateTime'){
+                    $dateTime = $value->format('Y-m-d\TH:i:s\Z');
+                    $values[$key] = $dateTime;
+                }
+                if (is_array($value)){
+                    if (!$classDetails->isInlineArray){
+                        $subKey = $classDetails->arrayEntryname;
+                        $subArray = [$subKey => $value];
+                        $values[$key] = $subArray;
+                    }
+                }
+            }
+        }
+        return $values;
+    }
+    
+    // Json Set Code
+    public function set($data)
+    {
+        if(is_array($data) || is_object($data)) {
+			$mapper = \net\authorize\util\Mapper::Instance();
+			foreach($data AS $key => $value) {
+				$classDetails = $mapper->getClass(get_class() , $key);
+	 
+				if($classDetails !== NULL ) {
+					if ($classDetails->isArray) {
+						if ($classDetails->isCustomDefined) {
+							foreach($value AS $keyChild => $valueChild) {
+								$type = new $classDetails->className;
+								$type->set($valueChild);
+								$this->{'addTo' . $key}($type);
+							}
+						}
+						else if ($classDetails->className === 'DateTime' || $classDetails->className === 'Date' ) {
+							foreach($value AS $keyChild => $valueChild) {
+								$type = new \DateTime($valueChild);
+								$this->{'addTo' . $key}($type);
+							}
+						}
+						else {
+							foreach($value AS $keyChild => $valueChild) {
+								$this->{'addTo' . $key}($valueChild);
+							}
+						}
+					}
+					else {
+						if ($classDetails->isCustomDefined){
+							$type = new $classDetails->className;
+							$type->set($value);
+							$this->{'set' . $key}($type);
+						}
+						else if ($classDetails->className === 'DateTime' || $classDetails->className === 'Date' ) {
+							$type = new \DateTime($value);
+							$this->{'set' . $key}($type);
+						}
+						else {
+							$this->{'set' . $key}($value);
+						}
+					}
+				}
+			}
+		}
+    }
+    
 }
 
