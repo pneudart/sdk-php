@@ -1,4 +1,4 @@
-net\authorize\api\contract\v1\WebCheckOutDataType\TokenAType:
+net\authorize\api\contract\v1\WebCheckOutDataTypeTokenType:
     properties:
         cardNumber:
             expose: true
