@@ -4512,7 +4512,7 @@ The merchant must be signed up for the CIM service to use it.
         <xs:extension base="anet:ANetApiResponse">
           <xs:sequence>
             <xs:element name="totalNumInResultSet" type="xs:int" minOccurs="0" maxOccurs="1"/>
-            <xs:element name="auDetails" type="anet:ListOfAUDetailsType" minOccurs="0"/>
+            <xs:element name="auDetails" type="anet:auDetailsType" minOccurs="0"/>
           </xs:sequence>
         </xs:extension>
       </xs:complexContent>
@@ -4549,13 +4549,16 @@ The merchant must be signed up for the CIM service to use it.
   <!-- ===================================================== -->
   <xs:complexType name="auDetailsType">
     <xs:sequence>
-      <xs:element name="customerProfileID" type="xs:long"/>
+      <xs:element name="auReasonCode" type="xs:string"/>
+      <xs:element name="creditCard" type="anet:creditCardMaskedType" minOccurs="0" maxOccurs="1"/>
       <xs:element name="customerPaymentProfileID" type="xs:long"/>
+      <xs:element name="customerProfileID" type="xs:long"/>
       <xs:element name="firstName" type="xs:string" minOccurs="0"/>
       <xs:element name="lastName" type="xs:string" minOccurs="0"/>
-      <xs:element name="updateTimeUTC" type="xs:string"/>
-      <xs:element name="auReasonCode" type="xs:string"/>
+      <xs:element name="newCreditCard" type="anet:creditCardMaskedType" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="oldCreditCard" type="anet:creditCardMaskedType" minOccurs="0" maxOccurs="1"/>
       <xs:element name="reasonDescription" type="xs:string"/>
+      <xs:element name="updateTimeUTC" type="xs:string"/>
     </xs:sequence>
   </xs:complexType>
   <!--  

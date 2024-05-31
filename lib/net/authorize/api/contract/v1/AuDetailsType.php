@@ -10,6 +10,15 @@ namespace net\authorize\api\contract\v1;
  */
 class AuDetailsType implements \JsonSerializable
 {
+    /**
+     * @property string $auReasonCode
+     */
+    private $auReasonCode = null;
+
+    /**
+     * @property \net\authorize\api\contract\v1\CreditCardMaskedType $creditCard
+     */
+    private $creditCard = null;
 
     /**
      * @property integer $customerProfileID
@@ -32,14 +41,14 @@ class AuDetailsType implements \JsonSerializable
     private $lastName = null;
 
     /**
-     * @property string $updateTimeUTC
+     * @property \net\authorize\api\contract\v1\CreditCardMaskedType $newCreditCard
      */
-    private $updateTimeUTC = null;
+    private $newCreditCard = null;
 
     /**
-     * @property string $auReasonCode
+     * @property \net\authorize\api\contract\v1\CreditCardMaskedType $oldCreditCard
      */
-    private $auReasonCode = null;
+    private $oldCreditCard = null;
 
     /**
      * @property string $reasonDescription
@@ -47,24 +56,51 @@ class AuDetailsType implements \JsonSerializable
     private $reasonDescription = null;
 
     /**
-     * Gets as customerProfileID
-     *
-     * @return integer
+     * @property string $updateTimeUTC
      */
-    public function getCustomerProfileID()
+    private $updateTimeUTC = null;
+
+    /**
+     * Gets as auReasonCode
+     *
+     * @return string
+     */
+    public function getAuReasonCode()
     {
-        return $this->customerProfileID;
+        return $this->auReasonCode;
     }
 
     /**
-     * Sets a new customerProfileID
+     * Sets a new auReasonCode
      *
-     * @param integer $customerProfileID
+     * @param string $auReasonCode
      * @return self
      */
-    public function setCustomerProfileID($customerProfileID)
+    public function setAuReasonCode($auReasonCode)
     {
-        $this->customerProfileID = $customerProfileID;
+        $this->auReasonCode = $auReasonCode;
+        return $this;
+    }
+
+    /**
+     * Gets as creditCard
+     *
+     * @return \net\authorize\api\contract\v1\CreditCardMaskedType
+     */
+    public function getCreditCard()
+    {
+        return $this->creditCard;
+    }
+
+    /**
+     * Sets a new creditCard
+     *
+     * @param \net\authorize\api\contract\v1\CreditCardMaskedType $creditCard
+     * @return self
+     */
+    public function setCreditCard(\net\authorize\api\contract\v1\CreditCardMaskedType $creditCard)
+    {
+        $this->creditCard = $creditCard;
         return $this;
     }
 
@@ -87,6 +123,28 @@ class AuDetailsType implements \JsonSerializable
     public function setCustomerPaymentProfileID($customerPaymentProfileID)
     {
         $this->customerPaymentProfileID = $customerPaymentProfileID;
+        return $this;
+    }
+
+    /**
+     * Gets as customerProfileID
+     *
+     * @return integer
+     */
+    public function getCustomerProfileID()
+    {
+        return $this->customerProfileID;
+    }
+
+    /**
+     * Sets a new customerProfileID
+     *
+     * @param integer $customerProfileID
+     * @return self
+     */
+    public function setCustomerProfileID($customerProfileID)
+    {
+        $this->customerProfileID = $customerProfileID;
         return $this;
     }
 
@@ -135,6 +193,50 @@ class AuDetailsType implements \JsonSerializable
     }
 
     /**
+     * Gets as newCreditCard
+     *
+     * @return \net\authorize\api\contract\v1\CreditCardMaskedType
+     */
+    public function getNewCreditCard()
+    {
+        return $this->newCreditCard;
+    }
+
+    /**
+     * Sets a new newCreditCard
+     *
+     * @param \net\authorize\api\contract\v1\CreditCardMaskedType $newCreditCard
+     * @return self
+     */
+    public function setNewCreditCard(\net\authorize\api\contract\v1\CreditCardMaskedType $newCreditCard)
+    {
+        $this->newCreditCard = $newCreditCard;
+        return $this;
+    }
+
+    /**
+     * Gets as oldCreditCard
+     *
+     * @return \net\authorize\api\contract\v1\CreditCardMaskedType
+     */
+    public function getOldCreditCard()
+    {
+        return $this->oldCreditCard;
+    }
+
+    /**
+     * Sets a new oldCreditCard
+     *
+     * @param \net\authorize\api\contract\v1\CreditCardMaskedType $oldCreditCard
+     * @return self
+     */
+    public function setOldCreditCard(\net\authorize\api\contract\v1\CreditCardMaskedType $oldCreditCard)
+    {
+        $this->oldCreditCard = $oldCreditCard;
+        return $this;
+    }
+
+    /**
      * Gets as updateTimeUTC
      *
      * @return string
@@ -153,28 +255,6 @@ class AuDetailsType implements \JsonSerializable
     public function setUpdateTimeUTC($updateTimeUTC)
     {
         $this->updateTimeUTC = $updateTimeUTC;
-        return $this;
-    }
-
-    /**
-     * Gets as auReasonCode
-     *
-     * @return string
-     */
-    public function getAuReasonCode()
-    {
-        return $this->auReasonCode;
-    }
-
-    /**
-     * Sets a new auReasonCode
-     *
-     * @param string $auReasonCode
-     * @return self
-     */
-    public function setAuReasonCode($auReasonCode)
-    {
-        $this->auReasonCode = $auReasonCode;
         return $this;
     }
 

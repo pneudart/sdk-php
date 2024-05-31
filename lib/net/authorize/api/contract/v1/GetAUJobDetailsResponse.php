@@ -14,7 +14,7 @@ class GetAUJobDetailsResponse extends ANetApiResponseType
     private $totalNumInResultSet = null;
 
     /**
-     * @property \net\authorize\api\contract\v1\ListOfAUDetailsType $auDetails
+     * @property \net\authorize\api\contract\v1\AuDetailsType $auDetails
      */
     private $auDetails = null;
 
@@ -41,9 +41,43 @@ class GetAUJobDetailsResponse extends ANetApiResponseType
     }
 
     /**
+     * Adds as auDetails
+     *
+     * @return self
+     * @param \net\authorize\api\contract\v1\AuDetailsType $auDetails
+     */
+    public function addToAuDetails(\net\authorize\api\contract\v1\AuDetailsType $auDetails)
+    {
+        $this->auDetails[] = $auDetails;
+        return $this;
+    }
+
+    /**
+     * isset auDetails
+     *
+     * @param scalar $index
+     * @return boolean
+     */
+    public function issetAuDetails($index)
+    {
+        return isset($this->auDetails[$index]);
+    }
+
+    /**
+     * unset auDetails
+     *
+     * @param scalar $index
+     * @return void
+     */
+    public function unsetAuDetails($index)
+    {
+        unset($this->auDetails[$index]);
+    }
+
+    /**
      * Gets as auDetails
      *
-     * @return \net\authorize\api\contract\v1\ListOfAUDetailsType
+     * @return \net\authorize\api\contract\v1\AuDetailsType[]
      */
     public function getAuDetails()
     {
@@ -53,10 +87,10 @@ class GetAUJobDetailsResponse extends ANetApiResponseType
     /**
      * Sets a new auDetails
      *
-     * @param \net\authorize\api\contract\v1\ListOfAUDetailsType $auDetails
+     * @param \net\authorize\api\contract\v1\AuDetailsType[] $auDetails
      * @return self
      */
-    public function setAuDetails(\net\authorize\api\contract\v1\ListOfAUDetailsType $auDetails)
+    public function setAuDetails(array $auDetails)
     {
         $this->auDetails = $auDetails;
         return $this;

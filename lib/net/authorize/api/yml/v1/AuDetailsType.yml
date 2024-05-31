@@ -1,15 +1,25 @@
 net\authorize\api\contract\v1\AuDetailsType:
     properties:
-        customerProfileID:
+        auReasonCode:
             expose: true
             access_type: public_method
-            serialized_name: customerProfileID
+            serialized_name: auReasonCode
             xml_element:
                 namespace: AnetApi/xml/v1/schema/AnetApiSchema.xsd
             accessor:
-                getter: getCustomerProfileID
-                setter: setCustomerProfileID
-            type: integer
+                getter: getAuReasonCode
+                setter: setAuReasonCode
+            type: string
+        creditCard:
+            expose: true
+            access_type: public_method
+            serialized_name: creditCard
+            xml_element:
+                namespace: AnetApi/xml/v1/schema/AnetApiSchema.xsd
+            accessor:
+                getter: getCreditCard
+                setter: setCreditCard
+            type: net\authorize\api\contract\v1\CreditCardMaskedType
         customerPaymentProfileID:
             expose: true
             access_type: public_method
@@ -19,6 +29,16 @@ net\authorize\api\contract\v1\AuDetailsType:
             accessor:
                 getter: getCustomerPaymentProfileID
                 setter: setCustomerPaymentProfileID
+            type: integer
+        customerProfileID:
+            expose: true
+            access_type: public_method
+            serialized_name: customerProfileID
+            xml_element:
+                namespace: AnetApi/xml/v1/schema/AnetApiSchema.xsd
+            accessor:
+                getter: getCustomerProfileID
+                setter: setCustomerProfileID
             type: integer
         firstName:
             expose: true
@@ -40,26 +60,26 @@ net\authorize\api\contract\v1\AuDetailsType:
                 getter: getLastName
                 setter: setLastName
             type: string
-        updateTimeUTC:
+        newCreditCard:
             expose: true
             access_type: public_method
-            serialized_name: updateTimeUTC
+            serialized_name: newCreditCard
             xml_element:
                 namespace: AnetApi/xml/v1/schema/AnetApiSchema.xsd
             accessor:
-                getter: getUpdateTimeUTC
-                setter: setUpdateTimeUTC
-            type: string
-        auReasonCode:
+                getter: getNewCreditCard
+                setter: setNewCreditCard
+            type: net\authorize\api\contract\v1\CreditCardMaskedType
+        oldCreditCard:
             expose: true
             access_type: public_method
-            serialized_name: auReasonCode
+            serialized_name: oldCreditCard
             xml_element:
                 namespace: AnetApi/xml/v1/schema/AnetApiSchema.xsd
             accessor:
-                getter: getAuReasonCode
-                setter: setAuReasonCode
-            type: string
+                getter: getOldCreditCard
+                setter: setOldCreditCard
+            type: net\authorize\api\contract\v1\CreditCardMaskedType
         reasonDescription:
             expose: true
             access_type: public_method
@@ -69,4 +89,14 @@ net\authorize\api\contract\v1\AuDetailsType:
             accessor:
                 getter: getReasonDescription
                 setter: setReasonDescription
+            type: string
+        updateTimeUTC:
+            expose: true
+            access_type: public_method
+            serialized_name: updateTimeUTC
+            xml_element:
+                namespace: AnetApi/xml/v1/schema/AnetApiSchema.xsd
+            accessor:
+                getter: getUpdateTimeUTC
+                setter: setUpdateTimeUTC
             type: string

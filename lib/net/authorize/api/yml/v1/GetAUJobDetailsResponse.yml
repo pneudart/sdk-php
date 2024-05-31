@@ -21,4 +21,4 @@ net\authorize\api\contract\v1\GetAUJobDetailsResponse:
             accessor:
                 getter: getAuDetails
                 setter: setAuDetails
-            type: net\authorize\api\contract\v1\ListOfAUDetailsType
+            type: array<net\authorize\api\contract\v1\AuDetailsType>
